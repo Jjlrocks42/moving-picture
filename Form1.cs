@@ -63,27 +63,26 @@ namespace moving_picture
             
             back_ground.Location = pictureBox1.Location;
 
-            Enemy1.BackColor = Color.Red;
-            Enemy2.BackColor = Color.Red;
-            Enemy3.BackColor = Color.Red;
-            Enemy4.BackColor = Color.Red;
+            Jet1.BackColor = Color.DarkOliveGreen;
+            Jet2.BackColor = Color.DarkOliveGreen;
+            Jet3.BackColor = Color.DarkOliveGreen;
 
-            enemyHit = Enemy1;
-            Destroyed = pbDeath;
+            Enemy1.BackColor = Color.Crimson;
+            Enemy2.BackColor = Color.Crimson;
+            Enemy3.BackColor = Color.Crimson;
+            Enemy4.BackColor = Color.Crimson;
+
+            //=====================
+            //enemyHit = Jet1;
+            //Destroyed = pbDeath;
+            //=====================
         }
-
 
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-
-
             // y  =   pictureBox1.Location.Y;
             Move(tempsend, temp);
-
-          
-
-
         }
 
 
@@ -94,15 +93,11 @@ namespace moving_picture
             x = e.X;
             y = e.Y;
 
-          
-
-
             point = new Point(x, y);
 
             Point point1 = pictureBox1.Location;
             Point point2 = pictureBox1.Location;
             origin = pictureBox1.Location;
-
 
             thread1 = Thread.CurrentThread;
             getPoint(point);
@@ -113,39 +108,20 @@ namespace moving_picture
             Turn(point, point1);
             Thread.CurrentThread.Join(100);
 
-
-          
-
-
-
-
-
             while (point1.X != point.X)
                 {
-
-
-
                     if (point.X > point1.X)
                     {
-
-
                         Thread.Sleep(50);
-
 
                         point1.X++;
 
                         pictureBox1.Location = point1;
                         back_ground.Location = pictureBox1.Location;
 
-
-
-
-
-
                     }
                     else
                     {
-
                         X_left();
                         Thread.CurrentThread.Join(100);
 
@@ -154,7 +130,6 @@ namespace moving_picture
                         pictureBox1.Location = point1;
 
                         back_ground.Location = pictureBox1.Location;
-
                     }
 
 
@@ -186,12 +161,8 @@ namespace moving_picture
                                             counter++;
                                         }
 
-
                                         continue;
-
-
                                     }
-
                                 }   
                         }
                     }
@@ -203,7 +174,6 @@ namespace moving_picture
 
             while (point1.Y != point.Y)
             {
-
                 col = new CollisionHandeler();
                 col.Collision();
 
@@ -221,7 +191,11 @@ namespace moving_picture
                             pbDeath.Location = Locate;
                             pbDeath.BringToFront();
                             c.Visible = false;
-                            Enemy1.SendToBack();
+
+                            //=====================
+                            Jet1.SendToBack();
+                            //=====================
+
                             //point1.Y = point.Y;
 
                             if (counter < 2)
@@ -259,13 +233,6 @@ namespace moving_picture
                 }
 
             }
-
-            
-
-          
-
-
-
             Thread.Sleep(3000);
 
             //=====================================================================================================================================
@@ -274,9 +241,6 @@ namespace moving_picture
 
             while (point.X != point2.X)
             {
-
-               
-
                 if (point.X > point2.X)
                 {
                     X_left();
@@ -334,21 +298,25 @@ namespace moving_picture
                 //    break;
                 //}
 
-
-
                 //col = new CollisionHandeler();
                 //col.Collision();
+
+                //==================
+                Jet1.Visible = true;
+                Jet2.Visible = true;
+                Jet3.Visible = true;
+                //==================
+
                 Enemy1.Visible = true;
                 Enemy2.Visible = true;
                 Enemy3.Visible = true;
                 Enemy4.Visible = true;
 
 
+                //=================================
                 Point statonariy = new Point();
                 statonariy.X = 12;
                 statonariy.Y = 39;
-
-
 
                 Enemy1.Location = statonariy;
 
@@ -358,9 +326,13 @@ namespace moving_picture
                 statonariy = new Point(12, 216);
                 Enemy3.Location = statonariy;
 
+                //statonariy = new Point(12, 216);
+                //Enemy4.Location = statonariy;
+                //================================
+
                 statonariy = new Point(10, 299);
 
-                Enemy4.Location = statonariy;
+                //Jet4.Location = statonariy;
 
             }
         }
@@ -517,8 +489,8 @@ namespace moving_picture
             if (e.Button == MouseButtons.Left)
             {
 
-                Point newLoc = new Point(e.X + Enemy1.Location.X, e.Y + Enemy1.Location.Y);
-                Enemy1.Location = newLoc;
+                Point newLoc = new Point(e.X + Jet1.Location.X, e.Y + Jet1.Location.Y);
+                Jet1.Location = newLoc;
 
             }
         }
@@ -529,8 +501,8 @@ namespace moving_picture
             if (e.Button == MouseButtons.Left)
             {
 
-                Point newLoc = new Point(e.X + Enemy2.Location.X, e.Y + Enemy2.Location.Y);
-                Enemy2.Location = newLoc;
+                Point newLoc = new Point(e.X + Jet2.Location.X, e.Y + Jet2.Location.Y);
+                Jet2.Location = newLoc;
 
             }
         }
@@ -541,8 +513,8 @@ namespace moving_picture
             if (e.Button == MouseButtons.Left)
             {
 
-                Point newLoc = new Point(e.X + Enemy3.Location.X, e.Y + Enemy3.Location.Y);
-                Enemy3.Location = newLoc;
+                Point newLoc = new Point(e.X + Jet3.Location.X, e.Y + Jet3.Location.Y);
+                Jet3.Location = newLoc;
 
             }
         }
@@ -553,8 +525,8 @@ namespace moving_picture
             if (e.Button == MouseButtons.Left)
             {
 
-                Point newLoc = new Point(e.X + Enemy4.Location.X, e.Y + Enemy4.Location.Y);
-                Enemy4.Location = newLoc;
+                //Point newLoc = new Point(e.X + Jet4.Location.X, e.Y + Jet4.Location.Y);
+                //Jet4.Location = newLoc;
 
             }
         }
@@ -615,8 +587,8 @@ namespace moving_picture
             if (e.Button == MouseButtons.Left)
             {
 
-                Point newLoc = new Point(e.X + Enemy2.Location.X, e.Y + Enemy2.Location.Y);
-                Enemy2.Location = newLoc;
+                Point newLoc = new Point(e.X + Jet2.Location.X, e.Y + Jet2.Location.Y);
+                Jet2.Location = newLoc;
 
             }
         }
@@ -626,8 +598,8 @@ namespace moving_picture
             if (e.Button == MouseButtons.Left)
             {
 
-                Point newLoc = new Point(e.X + Enemy3.Location.X, e.Y + Enemy3.Location.Y);
-                Enemy3.Location = newLoc;
+                Point newLoc = new Point(e.X + Jet3.Location.X, e.Y + Jet3.Location.Y);
+                Jet3.Location = newLoc;
 
             }
         }
@@ -637,8 +609,8 @@ namespace moving_picture
             if (e.Button == MouseButtons.Left)
             {
 
-                Point newLoc = new Point(e.X + Enemy4.Location.X, e.Y + Enemy4.Location.Y);
-                Enemy4.Location = newLoc;
+                //Point newLoc = new Point(e.X + Jet4.Location.X, e.Y + Jet4.Location.Y);
+                //Jet4.Location = newLoc;
 
             }
         }
@@ -646,6 +618,11 @@ namespace moving_picture
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnEnd_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
         }
 
         static public void PlayerVictory()
